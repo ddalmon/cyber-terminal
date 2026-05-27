@@ -26,3 +26,7 @@
 [2026-05-24 12:27:21] [RESOLVE] amazon.com -> 98.87.170.74
 [2026-05-26 22:37:35] [scan] Scan started on local system
 [2026-05-26 22:37:41] [SCAN] Scan completed on local system
+[2026-05-26 22:56:16] [scan] Scan started on google.com
+[2026-05-26 22:56:22] [SCAN] Scan completed on google.com
+[2026-05-26 23:09:27] [scan] Scan started on google.com
+[2026-05-26 23:09:33] [SCAN] Scan completed on google.com
