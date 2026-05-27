@@ -30,3 +30,17 @@
 [2026-05-26 22:56:22] [SCAN] Scan completed on google.com
 [2026-05-26 23:09:27] [scan] Scan started on google.com
 [2026-05-26 23:09:33] [SCAN] Scan completed on google.com
+[2026-05-26 23:15:40] [scan] Scan started on google.com
+[2026-05-26 23:15:46] [SCAN] Scan completed on google.com
+[2026-05-26 23:17:32] [scan] Scan started on google.com
+[2026-05-26 23:17:38] [SCAN] Scan completed on google.com
+[2026-05-26 23:20:33] [scan] Scan started on google.com
+[2026-05-26 23:20:39] [SCAN] Scan completed on google.com
+[2026-05-26 23:22:06] [scan] Scan started on google.com
+[2026-05-26 23:22:12] [SCAN] Scan completed on google.com
+[2026-05-26 23:26:54] [scan] Scan started on google.com
+[2026-05-26 23:27:00] [SCAN] Scan completed on google.com
+[2026-05-26 23:34:12] [SCAN] Real scan started on google.com
+[2026-05-26 23:34:30] [SCAN] google.com:53 OPEN
+[2026-05-26 23:34:43] [SCAN] google.com:80 OPEN
+[2026-05-26 23:34:53] [SCAN] Real scan completed on google.com
