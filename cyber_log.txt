@@ -1,0 +1,28 @@
+[RESOLVE] google.com -> 142.250.73.142
+[2026-05-24 04:17:06] [RESOLVE] google.com -> 142.250.73.142
+[2026-05-24 04:27:29] [PING] Pinged google.com
+[2026-05-24 04:27:58] [scan] Scan started on google.com
+[2026-05-24 04:28:00] [SCAN] Scan completed on google.com
+[2026-05-24 04:28:01] [SCAN] Scan completed on google.com
+[2026-05-24 04:28:02] [SCAN] Scan completed on google.com
+[2026-05-24 04:28:03] [SCAN] Scan completed on google.com
+[2026-05-24 04:28:04] [SCAN] Scan completed on google.com
+[2026-05-24 04:28:10] [RESOLVE] google.com -> 142.251.34.206
+[2026-05-24 04:31:13] [scan] Scan started on google.com
+[2026-05-24 04:31:15] [SCAN] Scan completed on google.com
+[2026-05-24 04:31:16] [SCAN] Scan completed on google.com
+[2026-05-24 04:31:17] [SCAN] Scan completed on google.com
+[2026-05-24 04:31:18] [SCAN] Scan completed on google.com
+[2026-05-24 04:31:19] [SCAN] Scan completed on google.com
+[2026-05-24 04:31:25] [PING] Pinged google.com
+[2026-05-24 04:31:28] [RESOLVE] google.com -> 142.251.34.206
+[2026-05-24 04:33:10] [PING] Pinged google.com
+[2026-05-24 04:33:14] [scan] Scan started on google.com
+[2026-05-24 04:33:20] [SCAN] Scan completed on google.com
+[2026-05-24 04:33:24] [RESOLVE] google.com -> 142.251.34.206
+[2026-05-24 12:26:32] [scan] Scan started on local system
+[2026-05-24 12:26:38] [SCAN] Scan completed on local system
+[2026-05-24 12:27:17] [PING] Pinged amazon.com
+[2026-05-24 12:27:21] [RESOLVE] amazon.com -> 98.87.170.74
+[2026-05-26 22:37:35] [scan] Scan started on local system
+[2026-05-26 22:37:41] [SCAN] Scan completed on local system
