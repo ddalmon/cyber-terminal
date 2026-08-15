@@ -54,6 +54,9 @@ def grab_banner(target, port):
 
     try:
         scanner.connect((target, port))
+        if port in [80, 8080]:
+            scanner.send(b"GET / HTTP/1.1\r\nHost: test\r\n\r\n")
+
         banner = scanner.recv(1024)
 
         print(banner.decode(errors="ignore"))
