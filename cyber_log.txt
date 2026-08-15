@@ -44,3 +44,13 @@
 [2026-05-26 23:34:30] [SCAN] google.com:53 OPEN
 [2026-05-26 23:34:43] [SCAN] google.com:80 OPEN
 [2026-05-26 23:34:53] [SCAN] Real scan completed on google.com
+[2026-08-14 23:44:17] [SCAN] Real scan started on scanme.nmap.org
+[2026-08-14 23:44:18] [SCAN] scanme.nmap.org:22 OPEN
+[2026-08-14 23:44:19] [SCAN] scanme.nmap.org:53 OPEN
+[2026-08-14 23:44:21] [SCAN] scanme.nmap.org:80 OPEN
+[2026-08-14 23:44:21] [SCAN] Real scan completed on scanme.nmap.org
+[2026-08-14 23:46:26] [SCAN] Real scan started on scanme.nmap.org
+[2026-08-14 23:46:27] [SCAN] scanme.nmap.org:22 OPEN
+[2026-08-14 23:46:29] [SCAN] scanme.nmap.org:53 OPEN
+[2026-08-14 23:46:31] [SCAN] scanme.nmap.org:80 OPEN
+[2026-08-14 23:46:31] [SCAN] Real scan completed on scanme.nmap.org

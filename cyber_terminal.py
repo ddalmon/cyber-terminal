@@ -93,6 +93,9 @@ def run_scan(target, start_port=1, end_port=1024):
     print(f"Initializing REAL port scan on {target}...")
     write_log(f"[SCAN] Real scan started on {target}")
 
+    open_ports = []
+
+
     time.sleep(1)
 
     for port in range(start_port, end_port + 1):
@@ -104,10 +107,22 @@ def run_scan(target, start_port=1, end_port=1024):
         if result == 0:
             print(f"{GREEN}Port {port}: OPEN{RESET}")
             write_log(f"[SCAN] {target}:{port} OPEN")
+            open_ports.append(port)
 
         scanner.close()
 
     print("Real scan complete.")
+
+    print("\n=== SCAN SUMMARY ===")
+
+    if open_ports:
+        print(f"Open ports found: {len(open_ports)}")
+
+        for port in open_ports:
+            print(f"- {port}")
+    else:
+        print("No open ports found.")
+
     write_log(f"[SCAN] Real scan completed on {target}")
 
 
