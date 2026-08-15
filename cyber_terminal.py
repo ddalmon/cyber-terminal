@@ -2,63 +2,9 @@
 # IMPORTS
 # =========================
 
-import time
-import os
-import subprocess
-import socket
-from datetime import datetime
-from urllib import response
 from network_tools import grab_banner, ping_target, resolve_target, run_scan
-from logger import write_log, show_logs, clear_logs
+from logger import show_logs, clear_logs 
 from system_tools import network_status, system_info, show_status
-
-
-# =========================
-# COLORS
-# =========================
-
-GREEN = "\033[92m"
-RESET = "\033[0m"
-
-
-# =========================
-# LOGGING FUNCTIONS
-# =========================
-
-# =========================
-# NETWORK FUNCTIONS
-# =========================
-
-def grab_banner(target, port):
-    print(f"Attempting banner grab on {target}:{port}...")
-
-    scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    scanner.settimeout(2)
-
-    try:
-        scanner.connect((target, port))
-        if port in [80, 8080]:
-            scanner.send(b"GET / HTTP/1.1\r\nHost: test\r\n\r\n")
-
-        banner = scanner.recv(1024)
-
-        response = banner.decode(errors="ignore")
-
-        print("\n=== BANNER RESULTS ===")
-        print(f"Target: {target}")
-        print(f"Port: {port}\n")
-
-        print(response.split("\r\n\r\n")[0])
-
-    except Exception:
-        print("No banner received.")
-
-    finally:
-        scanner.close()
-
-# =========================
-# SYSTEM FUNCTIONS
-# =========================
 
 # =========================
 # TERMINAL FUNCTIONS
