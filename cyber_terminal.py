@@ -61,6 +61,11 @@ def grab_banner(target, port):
         banner = scanner.recv(1024)
 
         response = banner.decode(errors="ignore")
+
+        print("\n=== BANNER RESULTS ===")
+        print(f"Target: {target}")
+        print(f"Port: {port}\n")
+        
         print(response.split("\r\n\r\n")[0])
 
     except Exception:
