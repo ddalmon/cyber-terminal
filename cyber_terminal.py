@@ -7,6 +7,7 @@ import os
 import subprocess
 import socket
 from datetime import datetime
+from urllib import response
 
 
 # =========================
@@ -59,7 +60,8 @@ def grab_banner(target, port):
 
         banner = scanner.recv(1024)
 
-        print(banner.decode(errors="ignore"))
+        response = banner.decode(errors="ignore")
+        print(response.split("\r\n\r\n")[0])
 
     except Exception:
         print("No banner received.")
