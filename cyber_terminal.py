@@ -46,6 +46,24 @@ def clear_logs():
 # NETWORK FUNCTIONS
 # =========================
 
+def grab_banner(target, port):
+    print(f"Attempting banner grab on {target}:{port}...")
+
+    scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    scanner.settimeout(2)
+
+    try:
+        scanner.connect((target, port))
+        banner = scanner.recv(1024)
+
+        print(banner.decode(errors="ignore"))
+
+    except Exception:
+        print("No banner received.")
+
+    finally:
+        scanner.close()
+
 def ping_target(target):
     print(f"Pinging {target}...")
 
@@ -151,6 +169,7 @@ def show_help():
     print("clearlogs  - Clear the log file")
     print("clear      - Clear the screen")
     print("exit       - Exit terminal")
+    print("banner     - Attempt banner grab on a target port")
 
 
 def clear_screen():
@@ -206,6 +225,16 @@ while True:
         else:
             target = parts[1]
             resolve_target(target)
+
+    elif command.startswith("banner"):
+        parts = command.split()
+
+        if len(parts) == 3:
+            target = parts[1]
+            port = int(parts[2])
+            grab_banner(target, port)
+        else:
+            print("Usage: banner <target> <port>")
 
     elif command == "network":
         network_status()
