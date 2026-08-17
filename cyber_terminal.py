@@ -2,7 +2,7 @@
 # IMPORTS
 # =========================
 
-from network_tools import grab_banner, ping_target, resolve_target, run_scan
+from network_tools import grab_banner, ping_target, resolve_target, run_scan, export_results
 from logger import show_logs, clear_logs 
 from system_tools import network_status, system_info, show_status
 
@@ -103,6 +103,9 @@ while True:
 
     elif command == "clearlogs":
         clear_logs()
+
+    elif command == "export":
+        export_results()
 
     elif command == "clear":
         clear_screen()

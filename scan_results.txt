@@ -1,0 +1,3 @@
+scanme.nmap.org:22 OPEN
+scanme.nmap.org:53 OPEN
+scanme.nmap.org:80 OPEN

@@ -6,6 +6,8 @@ from logger import write_log
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
+last_scan_results = []
+
 
 def grab_banner(target, port):
     print(f"Attempting banner grab on {target}:{port}...")
@@ -62,8 +64,10 @@ def resolve_target(target):
 def run_scan(target, start_port=1, end_port=1024):
     print(f"Initializing REAL port scan on {target}...")
     write_log(f"[SCAN] Real scan started on {target}")
-
+    
     open_ports = []
+    last_scan_results.clear()
+
 
 
     time.sleep(1)
@@ -78,6 +82,7 @@ def run_scan(target, start_port=1, end_port=1024):
             print(f"{GREEN}Port {port}: OPEN{RESET}")
             write_log(f"[SCAN] {target}:{port} OPEN")
             open_ports.append(port)
+            last_scan_results.append((target, port))
 
         scanner.close()
 
@@ -94,3 +99,14 @@ def run_scan(target, start_port=1, end_port=1024):
         print("No open ports found.")
 
     write_log(f"[SCAN] Real scan completed on {target}")
+
+def export_results():
+    if not last_scan_results:
+        print("No scan results available to export.")
+        return
+
+    with open("scan_results.txt", "w") as file:
+        for target, port in last_scan_results:
+            file.write(f"{target}:{port} OPEN\n")
+
+    print("Scan results exported to scan_results.txt")
