@@ -74,6 +74,37 @@ def scan_port(target, port):
 
     return None
 
+def ping_host(ip_address):
+    result = subprocess.run(
+        ["ping", "-c", "1", "-W", "1", ip_address],
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode == 0:
+        return ip_address
+
+    return None
+
+def discover_hosts(network_prefix):
+    print(f"Discovering hosts on {network_prefix}.0/24...")
+
+    live_hosts = []
+
+    with ThreadPoolExecutor(max_workers=50) as executor:
+        addresses = [
+            f"{network_prefix}.{host}"
+            for host in range(1, 255)
+        ]
+
+        results = executor.map(ping_host, addresses)
+
+        for result in results:
+            if result is not None:
+                print(f"{GREEN}{result} ONLINE{RESET}")
+                live_hosts.append(result)
+
+    print(f"\nHosts found: {len(live_hosts)}")
 
 def run_scan(target, start_port=1, end_port=1024):
     print(f"Initializing REAL port scan on {target}...")

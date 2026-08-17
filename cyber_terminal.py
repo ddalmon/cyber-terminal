@@ -2,7 +2,7 @@
 # IMPORTS
 # =========================
 
-from network_tools import grab_banner, ping_target, resolve_target, run_scan, export_results
+from network_tools import grab_banner, ping_target, resolve_target, run_scan, export_results, discover_hosts
 from logger import show_logs, clear_logs 
 from system_tools import network_status, system_info, show_status
 
@@ -88,6 +88,15 @@ while True:
             grab_banner(target, port)
         else:
             print("Usage: banner <target> <port>")
+
+    elif command.startswith("discover"):
+        parts = command.split()
+
+        if len(parts) != 2:
+            print("Usage: discover <network_prefix>")
+        else:
+            network_prefix = parts[1]
+            discover_hosts(network_prefix)
 
     elif command == "network":
         network_status()
