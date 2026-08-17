@@ -1,6 +1,7 @@
 import time
 import subprocess
 import socket
+from concurrent.futures import ThreadPoolExecutor
 from logger import write_log
 
 GREEN = "\033[92m"
@@ -60,6 +61,19 @@ def resolve_target(target):
         print("Could not resolve hostname.")
         write_log(f"[ERROR] Could not resolve {target}")
 
+def scan_port(target, port):
+    scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    scanner.settimeout(0.5)
+
+    result = scanner.connect_ex((target, port))
+
+    scanner.close()
+
+    if result == 0:
+        return port
+
+    return None
+
 
 def run_scan(target, start_port=1, end_port=1024):
     print(f"Initializing REAL port scan on {target}...")
@@ -72,19 +86,18 @@ def run_scan(target, start_port=1, end_port=1024):
 
     time.sleep(1)
 
-    for port in range(start_port, end_port + 1):
-        scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        scanner.settimeout(0.5)
+    with ThreadPoolExecutor(max_workers=50) as executor:
+        results = executor.map(
+            lambda port: scan_port(target, port),
+            range(start_port, end_port + 1)
+        )
 
-        result = scanner.connect_ex((target, port))
-
-        if result == 0:
-            print(f"{GREEN}Port {port}: OPEN{RESET}")
-            write_log(f"[SCAN] {target}:{port} OPEN")
-            open_ports.append(port)
-            last_scan_results.append((target, port))
-
-        scanner.close()
+        for port in results:
+            if port is not None:
+                print(f"{GREEN}Port {port}: OPEN{RESET}")
+                write_log(f"[SCAN] {target}:{port} OPEN")
+                open_ports.append(port)
+                last_scan_results.append((target, port))
 
     print("Real scan complete.")
 
