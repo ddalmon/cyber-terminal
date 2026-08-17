@@ -9,6 +9,19 @@ RESET = "\033[0m"
 
 last_scan_results = []
 
+COMMON_SERVICES = {
+    21: "FTP",
+    22: "SSH",
+    23: "Telnet",
+    25: "SMTP",
+    53: "DNS",
+    80: "HTTP",
+    110: "POP3",
+    143: "IMAP",
+    443: "HTTPS",
+    445: "SMB",
+    3389: "RDP"
+}
 
 def grab_banner(target, port):
     print(f"Attempting banner grab on {target}:{port}...")
@@ -127,8 +140,11 @@ def run_scan(target, start_port=1, end_port=1024):
 
         for port in results:
             if port is not None:
-                print(f"{GREEN}Port {port}: OPEN{RESET}")
-                write_log(f"[SCAN] {target}:{port} OPEN")
+                service = COMMON_SERVICES.get(port, "Unknown")
+
+                print(f"{GREEN}Port {port}: OPEN ({service}){RESET}")
+                write_log(f"[SCAN] {target}:{port} OPEN ({service})")
+
                 open_ports.append(port)
                 last_scan_results.append((target, port))
 
