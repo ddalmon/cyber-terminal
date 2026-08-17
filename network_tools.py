@@ -23,6 +23,8 @@ COMMON_SERVICES = {
     3389: "RDP"
 }
 
+BANNER_PORTS = [22, 80, 443, 8080]
+
 def grab_banner(target, port):
     print(f"Attempting banner grab on {target}:{port}...")
 
@@ -144,6 +146,9 @@ def run_scan(target, start_port=1, end_port=1024):
 
                 print(f"{GREEN}Port {port}: OPEN ({service}){RESET}")
                 write_log(f"[SCAN] {target}:{port} OPEN ({service})")
+
+                if port in BANNER_PORTS:
+                    print("  Banner Available")
 
                 open_ports.append(port)
                 last_scan_results.append((target, port))
