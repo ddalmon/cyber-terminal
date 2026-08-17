@@ -166,6 +166,7 @@ def run_scan(target, start_port=1, end_port=1024):
         for port in results:
             if port is not None:
                 service = COMMON_SERVICES.get(port, "Unknown")
+                banner = "N/A"
 
                 print(f"{GREEN}Port {port}: OPEN ({service}){RESET}")
                 write_log(f"[SCAN] {target}:{port} OPEN ({service})")
@@ -175,7 +176,7 @@ def run_scan(target, start_port=1, end_port=1024):
                     print(f" Banner: {banner}")
 
                 open_ports.append(port)
-                last_scan_results.append((target, port))
+                last_scan_results.append((target, port, service, banner))
 
     print("Real scan complete.")
 
@@ -203,7 +204,9 @@ def export_results():
         return
 
     with open("scan_results.txt", "w") as file:
-        for target, port in last_scan_results:
-            file.write(f"{target}:{port} OPEN\n")
+        for target, port, service, banner in last_scan_results:
+            file.write(
+                f"{target}:{port} OPEN ({service}) | Banner: {banner}\n"
+            )
 
     print("Scan results exported to scan_results.txt")
