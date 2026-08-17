@@ -121,6 +121,29 @@ def discover_hosts(network_prefix):
 
     print(f"\nHosts found: {len(live_hosts)}")
 
+def get_banner(target, port):
+    scanner = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    scanner.settimeout(2)
+
+    try:
+        scanner.connect((target, port))
+
+        if port in [80, 8080]:
+            scanner.send(
+                f"GET / HTTP/1.1\r\nHost: {target}\r\nConnection: close\r\n\r\n".encode()
+            )
+
+        banner = scanner.recv(1024)
+        response = banner.decode(errors="ignore")
+
+        return response.split("\r\n")[0]
+
+    except Exception:
+        return "No banner received"
+
+    finally:
+        scanner.close()    
+
 def run_scan(target, start_port=1, end_port=1024):
     print(f"Initializing REAL port scan on {target}...")
     write_log(f"[SCAN] Real scan started on {target}")
@@ -148,7 +171,8 @@ def run_scan(target, start_port=1, end_port=1024):
                 write_log(f"[SCAN] {target}:{port} OPEN ({service})")
 
                 if port in BANNER_PORTS:
-                    print("  Banner Available")
+                    banner = get_banner(target, port)
+                    print(f" Banner: {banner}")
 
                 open_ports.append(port)
                 last_scan_results.append((target, port))
