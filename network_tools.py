@@ -78,7 +78,9 @@ def scan_port(target, port):
 def run_scan(target, start_port=1, end_port=1024):
     print(f"Initializing REAL port scan on {target}...")
     write_log(f"[SCAN] Real scan started on {target}")
-    
+
+    start_time = time.time()
+
     open_ports = []
     last_scan_results.clear()
 
@@ -110,6 +112,11 @@ def run_scan(target, start_port=1, end_port=1024):
             print(f"- {port}")
     else:
         print("No open ports found.")
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    print(f"Scan completed in {elapsed_time:.2f} seconds.")
 
     write_log(f"[SCAN] Real scan completed on {target}")
 
