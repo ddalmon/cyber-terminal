@@ -54,9 +54,22 @@ while True:
 
         elif len(parts) == 4:
             target = parts[1]
-            start_port = int(parts[2])
-            end_port = int(parts[3])
-            run_scan(target, start_port, end_port)
+
+            try:
+                start_port = int(parts[2])
+                end_port = int(parts[3])
+
+                if start_port < 1 or end_port > 65535:
+                    print("Ports must be between 1 and 65535.")
+
+                elif start_port > end_port:
+                    print("Start port cannot be greater than end port.")
+
+                else:
+                    run_scan(target, start_port, end_port)
+                    
+            except ValueError:
+                print("Ports must be numbers.")
 
         else:
             print("Invalid scan command.")
