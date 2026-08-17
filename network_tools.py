@@ -156,7 +156,8 @@ def run_scan(target, start_port=1, end_port=1024):
         print(f"Open ports found: {len(open_ports)}")
 
         for port in open_ports:
-            print(f"- {port}")
+            service = COMMON_SERVICES.get(port, "Unknown")
+            print(f"- {port} ({service})")
     else:
         print("No open ports found.")
 
